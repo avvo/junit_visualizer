@@ -1,0 +1,20 @@
+
+nav.header
+  | This is a header
+
+  = button_to 'Pull Results', pull_results_results_path, method: :post, class: 'header-btn'
+  hr
+  /.container
+    .header-group
+      = link_to '#!', class: 'header-brand'
+      = icon :avvo
+
+    .header-group
+      ul.header-links
+        li = link_to 'Jobs', root_path
+
+    .header-group.header-group-last
+      = button_to 'Pull Results', pull_results_results_path, method: :post, class: 'header-btn btn btn-outline'
+      | &nbsp;
+      | &nbsp;
+      = button_to 'Clear all Results', clear_results_results_path, method: :delete, class: 'header-btn btn btn-link u-text-color-red'
