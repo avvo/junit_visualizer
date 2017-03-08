@@ -27,10 +27,10 @@ gem 'nokogiri', '1.6.7.2'
 
 gem 'dotenv-rails'
 
-gem 'resque'
-gem 'resque-scheduler'
-gem 'resque-web'
-gem 'active_scheduler'    #wrapper to allow resque-scheduler to work with ActiveJob
+# gem 'resque'
+# gem 'resque-scheduler'
+# gem 'resque-web'
+# gem 'active_scheduler'    #wrapper to allow resque-scheduler to work with ActiveJob
 
 gem 'sidekiq'
 
