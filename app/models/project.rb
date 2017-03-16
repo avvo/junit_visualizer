@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
 
-  has_many :suites
+  has_many :suites, dependent: :destroy
+  has_many :builds, dependent: :destroy
+
   def retrieve_results_from_s3
     # s3 = S3Wrapper.new
 
@@ -18,6 +20,10 @@ class Project < ApplicationRecord
 
     suites.each do |suite_name|
       Suite.find_or_create_by(project: self, name: suite_name)
+    end
+
+    build_numbers.each do |build_number|
+      Build.find_or_create_by(project: self, number: build_number)
     end
   end
 

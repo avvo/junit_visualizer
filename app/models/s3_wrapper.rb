@@ -51,7 +51,7 @@ class S3Wrapper
       build_number_list << parse_build_number(full_path)
     end
 
-    build_number_list.uniq
+    build_number_list.compact.uniq.sort
   end
 
   def suite_name_list(project_name)
@@ -61,20 +61,23 @@ class S3Wrapper
       suite_list << parse_suite_name(project_name, full_path)
     end
 
-    suite_list.uniq
+    suite_list.compact.uniq.sort
   end
 
   def parse_suite_name(project_name, filepath)
     modified_filepath = filepath
 
-    full_project, _ = modified_filepath.split("build_number_")
+    path_array = modified_filepath.split("build_number_")
+
+    return nil if path_array.size == 1
+
+    full_project = path_array[0]
 
     full_project.slice!(project_name)
     full_project.slice!('/')
     suite_name = full_project.chomp('/')
 
     # puts "project: #{project}"
-    # puts "suite name: #{suite_name}"
     # puts "suite name: #{suite_name}"
 
     suite_name
@@ -85,10 +88,12 @@ class S3Wrapper
 
     _, build_number_full_path = modified_filepath.split("build_number_")
 
+    return nil if build_number_full_path.nil?
+
     build_number, _ = build_number_full_path.split('/')
     # puts "build number: #{build_number}"
 
-    build_number
+    build_number.to_i
   end
 
   # private
