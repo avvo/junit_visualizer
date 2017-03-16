@@ -8,9 +8,11 @@ class PullTestResultsJob < ActiveJob::Base
       Project.find_or_create_by(name: project_name)
     end
 
-    Project.all.each do |job|
-      p "pulling results for #{job.name}"
-      job.retrieve_suite_names
+    Project.all.each do |project|
+      s3 = S3Wrapper.new
+
+      p "pulling results for #{project.name}"
+      project.retrieve_suite_names_and_builds(s3)
     end
 
   end

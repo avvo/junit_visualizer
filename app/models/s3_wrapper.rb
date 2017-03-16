@@ -7,17 +7,6 @@ class S3Wrapper
     @s3_resource ||= Aws::S3::Resource.new
   end
 
-  # def file_list(job_name:, suite_name: nil, build_number:)
-  #   list = []
-  #
-  #   path = file_path(job_name: job_name, suite_name: suite_name, build_number: build_number)
-  #   bucket.objects(prefix: path,).each do |object|
-  #     list << object.key
-  #   end
-  #
-  #   list
-  # end
-
   def download_from_s3(s3_filename)
     s3_client = Aws::S3::Client.new
 
@@ -31,12 +20,15 @@ class S3Wrapper
     file.path
   end
 
+  def file_list_from_project_and_build(project_name:, build_number:)
+    file_list_from_project(project_name).select{ |file| file.include?("build_number_#{build_number}/") }
+  end
+
   def file_list_from_project(project_name)
     @file_list_from_project ||= begin
       list = []
 
       bucket.objects(prefix: "#{project_name}").each do |object|
-        # puts "object: #{object.key}"
         list << object.key
       end
 
@@ -77,9 +69,6 @@ class S3Wrapper
     full_project.slice!('/')
     suite_name = full_project.chomp('/')
 
-    # puts "project: #{project}"
-    # puts "suite name: #{suite_name}"
-
     suite_name
   end
 
@@ -96,15 +85,10 @@ class S3Wrapper
     build_number.to_i
   end
 
-  # private
+  private
+
   def clean_filename(filename)
     filename.gsub(/\W/, "")
-  end
-
-  def file_path(job_name:, suite_name: nil, build_number:)
-    suite_string = "#{suite_name}/" if suite_name.present?
-
-    "#{job_name}/#{suite_string}#{build_number}/"
   end
 
   def bucket

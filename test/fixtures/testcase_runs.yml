@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  testcase: one
+  time: 1.5
+  passed: false
+  skipped: false
+  full_error: MyText
+
+two:
+  testcase: two
+  time: 1.5
+  passed: false
+  skipped: false
+  full_error: MyText

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316173025) do
+ActiveRecord::Schema.define(version: 20170316214915) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
@@ -34,6 +34,34 @@ ActiveRecord::Schema.define(version: 20170316173025) do
     t.index ["project_id"], name: "index_suites_on_project_id", using: :btree
   end
 
+  create_table "testcase_runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "testcase_id"
+    t.integer  "build_id"
+    t.float    "time",        limit: 24
+    t.boolean  "passed"
+    t.boolean  "skipped"
+    t.text     "full_error",  limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["build_id"], name: "index_testcase_runs_on_build_id", using: :btree
+    t.index ["testcase_id"], name: "index_testcase_runs_on_testcase_id", using: :btree
+  end
+
+  create_table "testcases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "project_id"
+    t.integer  "suite_id"
+    t.string   "file_name"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_testcases_on_project_id", using: :btree
+    t.index ["suite_id"], name: "index_testcases_on_suite_id", using: :btree
+  end
+
   add_foreign_key "builds", "projects"
   add_foreign_key "suites", "projects"
+  add_foreign_key "testcase_runs", "builds"
+  add_foreign_key "testcase_runs", "testcases"
+  add_foreign_key "testcases", "projects"
+  add_foreign_key "testcases", "suites"
 end
