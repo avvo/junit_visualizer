@@ -4,6 +4,21 @@ p
   strong Name:
   = @project.name
 
-= link_to 'Edit', edit_project_path(@project)
-'  |
-= link_to 'Back', projects_path
+table.table.condensed-table.table-bordered
+  thead
+    tr
+      th [colspan=3]
+        - @suites.each do |suite|
+          th [class="rotate"]
+            div
+              span
+                = suite.name
+    tr
+      th status
+      th
+        | build
+        .text-muted run time
+
+      th date
+  tbody
+    = render @builds

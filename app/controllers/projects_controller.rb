@@ -10,6 +10,12 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @builds = @project.builds
+    raw_suites = @project.suites
+    @suites = []
+    raw_suites.each do |suite|
+      @suites << SuitePresenter.new(suite)
+    end
   end
 
   # GET /projects/new

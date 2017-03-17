@@ -59,6 +59,8 @@ class Project < ApplicationRecord
 
           process_junit_file(temp_filename: temp_filename, build: build, suite: suite)
         end
+
+        build.update_summary_data
       end
     end
 

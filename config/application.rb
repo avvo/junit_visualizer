@@ -17,5 +17,9 @@ module CiReporter
     config.time_zone = 'Pacific Time (US & Canada)'
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.after_initialize do |app|
+      app.config.paths.add 'app/presenters', :eager_load => true
+    end
   end
 end

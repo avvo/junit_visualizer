@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316214915) do
+ActiveRecord::Schema.define(version: 20170317192838) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
     t.integer  "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "duration_in_seconds"
+    t.string   "status"
     t.index ["project_id"], name: "index_builds_on_project_id", using: :btree
   end
 
@@ -36,13 +38,13 @@ ActiveRecord::Schema.define(version: 20170316214915) do
 
   create_table "testcase_runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "testcase_id"
-    t.integer  "build_id"
     t.float    "time",        limit: 24
     t.boolean  "passed"
     t.boolean  "skipped"
     t.text     "full_error",  limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "build_id"
     t.index ["build_id"], name: "index_testcase_runs_on_build_id", using: :btree
     t.index ["testcase_id"], name: "index_testcase_runs_on_testcase_id", using: :btree
   end
