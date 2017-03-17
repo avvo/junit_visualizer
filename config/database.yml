@@ -4,7 +4,7 @@ default: &default
   port: <%= ENV.fetch('DB_PORT', 3306) %>
   username: <%= ENV.fetch('DB_USER', 'root') %>
   password: <%= ENV.fetch('DB_PASS', 'root') %>
-  database: ci-reporter
+  database: junit_visualizer
 
 development:
   <<: *default
@@ -14,7 +14,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ci-reporter<%= ENV['EXECUTOR_NUMBER'] %>_test
+  database: junit_visualizer<%= ENV['EXECUTOR_NUMBER'] %>_test
 
 production:
   <<: *default
