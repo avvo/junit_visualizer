@@ -1,45 +1,59 @@
 require 'junit_parser'
 
 class Project < ApplicationRecord
-
   has_many :suites, dependent: :destroy
   has_many :builds, dependent: :destroy
   has_many :testcases, dependent: :destroy
 
-  def retrieve_suite_names_and_builds(s3Wrapper)
-    # in our jenkins set up, the suite is part of the job name. we need to figure out what sub directories
-    suites = s3Wrapper.suite_name_list(name)
-    build_numbers = s3Wrapper.build_number_list(name)
-
-    puts "suites #{suites}"
-    puts "builds #{build_numbers}"
-
-    process_suites(suites)
-
-    process_builds(build_numbers: build_numbers, s3Wrapper: s3Wrapper)
+  def s3Wrapper
+    @s3Wrapper ||= S3Wrapper.new
   end
 
-  def process_suites(suites)
+  def refresh_project_and_pull_results
+    process_suites
+    process_builds_and_pull_results
+  end
+
+  def process_suites
+    suites = s3Wrapper.suite_name_list(name)
+    puts "suites #{suites}"
+
     suites.each do |suite_name|
       Suite.find_or_create_by(project: self, name: suite_name)
     end
   end
 
-  def process_builds(build_numbers:, s3Wrapper:)
+  def process_builds_and_pull_results
+    build_numbers = s3Wrapper.build_number_list(name)
+
+    puts "builds #{build_numbers}"
+
     count = 0
     build_numbers.each do |build_number|
-      build = Build.find_or_initialize_by(project: self, number: build_number)
-
-      if build.new_record?
+      if build_exists?(build_number)
+        puts "build #{build_number} already exists, skip"
+      else
         count += 1
         return if count > BUILDS_TO_PULL
+        puts "creating build #{build_number}"
+        create_build(build_number)
+      end
+    end
+  end
 
-        build.save!
+  def build_exists?(build_number)
+    Build.where(project: self, number: build_number).present?
+  end
 
+  def create_build(build_number)
+    build = Build.new(project: self, number: build_number)
+
+    Build.transaction do
+      if build.save!
         filenames = s3Wrapper.file_list_from_project_and_build(project_name: name, build_number: build_number)
 
         filenames.each do |filename|
-          suite = suite_from_filename(filename: filename, s3Wrapper: s3Wrapper)
+          suite = suite_from_filename(filename: filename)
 
           temp_filename = s3Wrapper.download_from_s3(filename)
 
@@ -50,7 +64,7 @@ class Project < ApplicationRecord
 
   end
 
-  def suite_from_filename(filename:, s3Wrapper:)
+  def suite_from_filename(filename:)
     suite_name = s3Wrapper.parse_suite_name(name, filename)
     suites = Suite.where(project: self, name: suite_name)
     suites.first

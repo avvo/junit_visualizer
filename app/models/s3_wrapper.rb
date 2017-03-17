@@ -80,7 +80,6 @@ class S3Wrapper
     return nil if build_number_full_path.nil?
 
     build_number, _ = build_number_full_path.split('/')
-    # puts "build number: #{build_number}"
 
     build_number.to_i
   end

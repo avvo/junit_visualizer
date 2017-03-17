@@ -9,10 +9,8 @@ class PullTestResultsJob < ActiveJob::Base
     end
 
     Project.all.each do |project|
-      s3 = S3Wrapper.new
-
       p "pulling results for #{project.name}"
-      project.retrieve_suite_names_and_builds(s3)
+      project.refresh_project_and_pull_results
     end
 
   end
