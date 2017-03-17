@@ -1,20 +1,18 @@
+nav.navbar.navbar-default
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed [type='button' data-toggle='collapse' data-target='#header-collapse-list' aria-expanded='false']
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href=root_path CI Reporter
+    #header-collapse-list.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li = link_to 'Projects', projects_path
 
-nav.header
-  | This is a header
+      ul.nav.navbar-nav.navbar-right.btn-toolbar
+        li
+          = link_to 'Pull Results', pull_results_results_path, method: :post
 
-  = button_to 'Pull Results', pull_results_results_path, method: :post, class: 'header-btn'
-  hr
-  /.container
-    .header-group
-      = link_to '#!', class: 'header-brand'
-      = icon :avvo
-
-    .header-group
-      ul.header-links
-        li = link_to 'Jobs', root_path
-
-    .header-group.header-group-last
-      = button_to 'Pull Results', pull_results_results_path, method: :post, class: 'header-btn btn btn-outline'
-      | &nbsp;
-      | &nbsp;
-      = button_to 'Clear all Results', clear_results_results_path, method: :delete, class: 'header-btn btn btn-link u-text-color-red'
+      /= button_to 'Clear all Results', clear_results_results_path, method: :delete, class: 'header-btn btn btn-link u-text-color-red'

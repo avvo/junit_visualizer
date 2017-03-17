@@ -1,0 +1,13 @@
+// change where the header collapses
+$grid-float-breakpoint: 100px;
+
+@import "bootstrap-sprockets";
+@import "bootswatch/flatly/variables";
+
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+//body { padding-top: 40px; }
+
+@import "bootswatch/flatly/bootswatch";
+
