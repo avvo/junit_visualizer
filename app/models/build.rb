@@ -2,9 +2,6 @@ class Build < ApplicationRecord
   belongs_to :project
   has_many :testcase_runs, dependent: :destroy
 
-  STATUS_SUCCESS = "SUCCESS"
-  STATUS_FAILURE = "FAILURE"
-
   def update_summary_data
     testcases = self.testcase_runs
 

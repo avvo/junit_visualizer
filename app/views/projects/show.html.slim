@@ -14,11 +14,14 @@ table.table.condensed-table.table-bordered
               span
                 = suite.name
     tr
-      th status
-      th
+      th [style="width:30px;"] status
+      th [style="width:30px;"]
         | build
         .text-muted run time
 
-      th date
+      th [style="width:30px;"] date
+      - @suites.each do |suite|
+        th
+          = suite.stats
   tbody
-    = render @builds
+    = render partial: 'builds/build', collection: @builds, locals: { suites: @suites }
