@@ -6,6 +6,8 @@ tr
     = build.number
     .text-muted = stringify_duration(build.duration_in_seconds)
   td
+    = simple_date(build.run_date)
+    .text-muted = simple_time(build.run_date)
     /p.u-vertical-margin-0 = simple_date(build.run_date)
     /p.u-vertical-margin-0.text-muted = simple_time(build.run_date)
   /- build.jenkins_suites.ordered.each do |suite|

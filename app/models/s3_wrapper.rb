@@ -10,7 +10,6 @@ class S3Wrapper
   def download_from_s3(s3_filename)
     s3_client = Aws::S3::Client.new
 
-    bucket.object(s3_filename)
     file = Tempfile.new(clean_filename(s3_filename))
 
     File.open(file.path, 'wb') do |file|
@@ -22,6 +21,12 @@ class S3Wrapper
 
   def file_list_from_project_and_build(project_name:, build_number:)
     file_list_from_project(project_name).select{ |file| file.include?("build_number_#{build_number}/") }
+  end
+
+  def file_modified_date(filename)
+    # This is kind of hacky. It would be better if the junit files contained the timestamp
+    # https://github.com/circleci/minitest-ci/pull/17
+    bucket.objects(prefix: filename).first.last_modified
   end
 
   def file_list_from_project(project_name)

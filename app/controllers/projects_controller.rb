@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @builds = @project.builds
+    @builds = @project.builds.order(number: :desc)
     raw_suites = @project.suites
     @suites = []
     raw_suites.each do |suite|

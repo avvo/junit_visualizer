@@ -52,6 +52,10 @@ class Project < ApplicationRecord
       if build.save!
         filenames = s3Wrapper.file_list_from_project_and_build(project_name: name, build_number: build_number)
 
+        # HACKY: just grab the modified date of the first file.
+        run_date = s3Wrapper.file_modified_date(filenames.first)
+        build.update_attributes!(run_date: run_date)
+
         filenames.each do |filename|
           suite = suite_from_filename(filename: filename)
 
