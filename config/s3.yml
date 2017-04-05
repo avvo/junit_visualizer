@@ -1,7 +1,7 @@
 development: &default
   access_key_id: <%= ENV.fetch('S3_ACCESS_KEY_ID') %>
   secret_access_key: <%= ENV.fetch('S3_SECRET_ACCESS_KEY') %>
-  bucket_name: 'avvo-ci-logs'
+  bucket_name: <%= ENV['AWS_BUCKET'] %>
   region: <%= ENV.fetch('AWS_REGION', 'us-west-2') %>
 test:
  <<: *default
