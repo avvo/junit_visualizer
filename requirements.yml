@@ -1,0 +1,31 @@
+service_name: junit_visualizer
+stack_name: junit_visualizer
+image: avvo/junit_visualizer
+facing: frontend
+pre-deploy: bin/pre-deploy
+post-deploy: false
+
+mysql:
+  - db: junit_visualizer
+    grants:
+      - select
+      - insert
+      - update
+      - delete
+      - create
+    as: DB
+    master: true
+
+additional_services:
+  redis:
+    image: redis:3.0
+    service_port: 6379
+    container_name: redis
+  memcached:
+    image: memcached
+    service_port: 11211
+    container_name: memcached
+
+workers:
+  - name: sidekiq
+    command: bin/sidekiq
