@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+Dir.chdir Pathname.new File.expand_path('../../',  __FILE__) do
+  system 'bundle exec sidekiq'
+end

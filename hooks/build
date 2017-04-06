@@ -1,0 +1,3 @@
+#!/bin/bash
+SOURCE_COMMIT=$(git rev-parse HEAD)
+docker build -t $IMAGE_NAME --build-arg SOURCE_COMMIT=$SOURCE_COMMIT .
