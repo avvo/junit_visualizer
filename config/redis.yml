@@ -1,20 +1,9 @@
 development:
-  host: <%= ENV.fetch('REDIS_HOST', 'localhost') %>
-  port: <%= ENV.fetch('REDIS_PORT', 6379) %>
-  db: 7
+  url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
+  namespace: 'junit_visualizer-local'
 test:
-  host: <%= ENV.fetch('REDIS_HOST', 'localhost') %>
-  port: <%= ENV.fetch('REDIS_PORT', 6379) %>
-  db: 7
-ec2:
-  host: <%= ENV.fetch('REDIS_HOST', 'localhost') %>
-  port: <%= ENV.fetch('REDIS_PORT', 6379) %>
-  db: 7
-stag:
-  host: <%= ENV.fetch('REDIS_HOST', 'redis1stag.corp.avvo.com') %>
-  port: <%= ENV.fetch('REDIS_PORT', 6379) %>
-  db: 8
+  url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
+  namespace: 'junit_visualizer-test'
 production:
-  host: <%= ENV.fetch('REDIS_HOST', 'redis1awl') %>
-  port: <%= ENV.fetch('REDIS_PORT', 6379) %>
-  db: 7
+  url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
+  namespace: 'junit_visualizer-production'

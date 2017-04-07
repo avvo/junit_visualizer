@@ -5,9 +5,5 @@ development: &default
   region: <%= ENV.fetch('AWS_REGION', 'us-west-2') %>
 test:
  <<: *default
-ec2:
-  <<: *default
-stag:
-  <<: *default
 production:
   <<: *default
