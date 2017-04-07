@@ -80,7 +80,9 @@ class Project < ApplicationRecord
     p "processing build #{build.number} for project: #{name}"
     junit_suite = JUnitParser.parse_junit(temp_filename)
 
-    process_junit_suite(junit_suite: junit_suite, build_id: build.id, suite: suite)
+    if junit_suite.present?
+      process_junit_suite(junit_suite: junit_suite, build_id: build.id, suite: suite)
+    end
   end
 
   def process_junit_suite(junit_suite:, build_id:, suite:)
