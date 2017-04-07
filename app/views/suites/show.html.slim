@@ -1,0 +1,10 @@
+h1
+  = @suite.name
+
+p
+  | Project:
+  =< link_to @suite.project.name, project_path(@suite.project)
+
+p
+  = "Tests (#{@suite.testcases.size}, last run data shown):"
+  = render 'testcases/table', testcases: @suite.testcases

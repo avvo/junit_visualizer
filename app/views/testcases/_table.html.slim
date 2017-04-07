@@ -1,0 +1,14 @@
+table.table.condensed-table.table-bordered
+  thead
+    tr
+      th
+        | Name
+      th
+        | File
+  tbody
+    - testcases.each do |testcase|
+      tr
+        td
+          = link_to testcase.name, testcase_path(testcase)
+        td
+          = testcase.file_name

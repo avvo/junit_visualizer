@@ -24,4 +24,5 @@ table.table.condensed-table.table-bordered
         th
           = suite.stats
   tbody
-    = render partial: 'builds/build', collection: @builds, locals: { suites: @suites }
+    - @builds.each do |build|
+      = render 'projects/build_row', build: build, suites: @suites

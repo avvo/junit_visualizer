@@ -5,7 +5,7 @@ tr
   td.text-center
     == display_status(build.status)
   td.text-center
-    = build.number
+    = link_to build.number, build_path(build)
     .text-muted = stringify_duration(build.duration_in_seconds)
   td.text-center
     = simple_date(build.run_date)

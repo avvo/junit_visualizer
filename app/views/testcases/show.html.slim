@@ -1,0 +1,22 @@
+h1
+  = @testcase.name
+
+p
+  | Suite:
+  =< link_to @testcase.suite.name, suite_path(@testcase.suite)
+
+p
+  | Project:
+  =< link_to @testcase.project.name, project_path(@testcase.project)
+
+- if @testcase.last_test_run.skipped?
+  | This test is skipped, maybe delete it instead?
+
+p
+  = "File: #{@testcase.file_name}"
+
+p
+  = "Last 10 average time: #{@testcase.average_time(10)} seconds"
+
+p
+  = "Last 10 pass rate: #{@testcase.average_pass(10)}%"
