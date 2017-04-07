@@ -29,4 +29,3 @@ We use mysql and redis.  You may need to set related environment variables for t
 For production you need to set SECRET_KEY_BASE
 
 This project is available in a docker image: https://hub.docker.com/r/avvo/junit_visualizer/
-
