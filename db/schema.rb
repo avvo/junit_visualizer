@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317192838) do
+ActiveRecord::Schema.define(version: 20170318013343) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170317192838) do
     t.datetime "updated_at",          null: false
     t.integer  "duration_in_seconds"
     t.string   "status"
+    t.datetime "run_date"
     t.index ["project_id"], name: "index_builds_on_project_id", using: :btree
   end
 

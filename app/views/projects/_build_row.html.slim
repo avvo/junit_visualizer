@@ -1,0 +1,17 @@
+/ build
+/ suites
+
+tr
+  td.text-center
+    == display_status(build.status)
+  td.text-center
+    = link_to build.number, build_path(build)
+    .text-muted = stringify_duration(build.duration_in_seconds)
+  td.text-center
+    = simple_date(build.run_date)
+    .text-muted = simple_time(build.run_date)
+
+  - suites.each do |suite|
+    td.text-center
+      == display_status(suite.status(build))
+      .text-muted = stringify_duration(suite.duration_in_seconds(build))

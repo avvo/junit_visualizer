@@ -1,0 +1,13 @@
+h1
+  = "#{@build.number} - #{@build.project.name}"
+
+h2
+  = @build.status
+
+- if @build.run_date.present?
+  p.lead
+    = "Ran #{@build.run_date.strftime('%-m/%-d/%y, %r')} in"
+    strong
+      =< "#{distance_of_time_in_words(@build.duration_in_seconds)}"
+
+= render 'testcases/run_table', testcase_runs: @build.testcase_runs

@@ -1,9 +1,14 @@
 module ApplicationHelper
+
+
+
   def simple_date(date)
+    return "" if date.nil?
     date.strftime('%m/%d/%y')
   end
 
   def simple_time(date)
+    return "" if date.nil?
     date.strftime('%I:%M%p')
   end
 
@@ -11,15 +16,15 @@ module ApplicationHelper
     status_class = nil
     status_color = nil
 
-    if status == Build::STATUS_SUCCESS
+    if status == STATUS_SUCCESS
       status_class = 'glyphicon glyphicon-ok-sign'
       status_color = "#52A304"
-    elsif status == Build::STATUS_FAILURE
+    elsif status == STATUS_FAILURE
       status_class = 'glyphicon glyphicon-remove-sign'
       status_color = "red"
     end
 
-    "<span title=#{status} class=\"#{status_class}\" style='color:#{status_color}'></span>"
+    "<span title=#{status} class=\"#{status_class}\" style='color:#{status_color}'></span>".html_safe
   end
 
   def stringify_duration(time_in_seconds)

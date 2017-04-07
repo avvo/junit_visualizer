@@ -1,14 +1,19 @@
-h1 Projects
+h1.pull-left
+  | Projects
+  span.h2
+    =< link_to new_project_path
+      span.glyphicon.glyphicon-plus-sign
 
 table.table
   tbody
     - @projects.each do |project|
       tr
-        td = project.name
-        td = link_to 'Show', project
-        td = link_to 'Edit', edit_project_path(project)
-        td = link_to 'Destroy', project, data: { confirm: 'Are you sure?' }, method: :delete
+        td
+          = link_to project.name, project
+        td
+          =< link_to edit_project_path(project)
+            span.glyphicon.glyphicon-pencil
+        td
+          =< link_to project, data: { confirm: 'Are you sure?' }, method: :delete
+            span.glyphicon.glyphicon-trash
 
-br
-
-= link_to 'New Project', new_project_path
