@@ -3,10 +3,12 @@ module ApplicationHelper
 
 
   def simple_date(date)
+    return "" if date.nil?
     date.strftime('%m/%d/%y')
   end
 
   def simple_time(date)
+    return "" if date.nil?
     date.strftime('%I:%M%p')
   end
 
