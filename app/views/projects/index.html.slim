@@ -8,12 +8,10 @@ table.table
   tbody
     - @projects.each do |project|
       tr
-        td
-          = link_to project.name, project
-        td
-          = link_to 'Unstable tests', unstable_tests_project_path(project)
-        td
-          = link_to 'Slowest tests', slowest_tests_project_path(project)
+        td = link_to project.name, project
+        td = render 'linklist', {project: project}
+        td = link_to 'Edit', edit_project_path(project)
+        td = link_to 'Destroy', project, data: { confirm: 'Are you sure?' }, method: :delete
         td
           =< link_to edit_project_path(project)
             span.glyphicon.glyphicon-pencil

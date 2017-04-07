@@ -27,6 +27,7 @@ gem 'redis-namespace'
 gem 'simple_form'
 
 gem 'aws-sdk'
+gem 'chartkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

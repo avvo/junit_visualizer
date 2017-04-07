@@ -56,6 +56,7 @@ GEM
       railties (>= 3.1)
     builder (3.2.3)
     byebug (9.0.6)
+    chartkick (2.0.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     debug_inspector (0.0.2)
@@ -194,6 +195,7 @@ DEPENDENCIES
   bootstrap-sass
   bootswatch-rails
   byebug
+  chartkick
   dotenv-rails
   foreman
   jbuilder (~> 2.5)

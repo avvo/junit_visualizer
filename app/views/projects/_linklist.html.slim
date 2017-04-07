@@ -1,0 +1,6 @@
+ul.list-inline
+  li = link_to 'History', project
+  li = link_to 'Chart', chart_project_path(project)
+  li = link_to 'Unstable tests', unstable_tests_project_path(project)
+  li = link_to 'Slowest tests', slowest_tests_project_path(project)
+

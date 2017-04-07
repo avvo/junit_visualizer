@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :slowest_tests, :unstable_tests]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :duration_data, :slowest_tests, :unstable_tests]
 
   def index
     @projects = Project.all
@@ -12,6 +12,16 @@ class ProjectsController < ApplicationController
     raw_suites.each do |suite|
       @suites << SuitePresenter.new(suite)
     end
+  end
+
+  def chart
+  end
+
+  def duration_data
+    ret_val = {}
+    @project.builds.where.not(run_date: nil).order(number: :desc).map { |build| ret_val[build.run_date] = build.duration_in_seconds }
+
+    render json: ret_val
   end
 
   def new

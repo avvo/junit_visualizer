@@ -1,8 +1,6 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @project.name
+= render 'subnav', project: @project
 
 table.table.condensed-table.table-bordered
   thead
