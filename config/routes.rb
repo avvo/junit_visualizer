@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects do
+    get :chart, on: :member
+    get :duration_data, on: :member
+  end
 
   resources :builds, only: [:show]
   resources :testcases, only: [:show]
