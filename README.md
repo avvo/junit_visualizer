@@ -6,10 +6,6 @@ CircleCI can provide JUnit files if you use [their gem](https://github.com/circl
 
 ## Setup
 
-Add to your Gemfile:
-
-```gem 'junit_visualizer'```
-
 Create your DB:
 
 ```rake db:setup```
