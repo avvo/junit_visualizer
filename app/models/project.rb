@@ -5,6 +5,10 @@ class Project < ApplicationRecord
   has_many :builds, dependent: :destroy
   has_many :testcases, dependent: :destroy
 
+  def build_count
+    builds.size
+  end
+
   def s3Wrapper
     @s3Wrapper ||= S3Wrapper.new
   end
