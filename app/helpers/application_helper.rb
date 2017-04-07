@@ -1,7 +1,5 @@
 module ApplicationHelper
 
-
-
   def simple_date(date)
     return "" if date.nil?
     date.strftime('%m/%d/%y')
@@ -47,4 +45,9 @@ module ApplicationHelper
       "#{minutes}m #{seconds}s"
     end
   end
+
+  def empty_form_object
+    ''
+  end
+
 end

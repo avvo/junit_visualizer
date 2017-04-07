@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :slowest_tests, :unstable_tests]
 
   def index
     @projects = Project.all
@@ -54,6 +54,22 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def slowest_tests
+    @slowest_tests = Stats::SlowestTests.new(
+        @project,
+        params.fetch(:build_count, Stats::SlowestTests::DEFAULT_BUILD_COUNT),
+        params.fetch(:test_count, Stats::SlowestTests::DEFAULT_TEST_COUNT)
+    )
+  end
+
+  def unstable_tests
+    @unstable_tests = Stats::UnstableTests.new(
+        @project,
+        params.fetch(:build_count, Stats::UnstableTests::DEFAULT_BUILD_COUNT),
+        params.fetch(:test_count, Stats::UnstableTests::DEFAULT_TEST_COUNT)
+    )
   end
 
   private
