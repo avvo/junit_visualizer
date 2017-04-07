@@ -33,7 +33,7 @@ ENV DB_PASS           thisisnotarealpassword
 ENV AWS_BUCKET	changeme
 ENV AWS_REGION  chnageme
 ENV S3_ACCESS_KEY_ID  changeme
-ENV S3_SECRECT_ACCESS_KEY changeme
+ENV S3_SECRET_ACCESS_KEY changeme
 
 ARG SOURCE_COMMIT=0
 RUN echo $SOURCE_COMMIT
