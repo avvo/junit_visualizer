@@ -22,6 +22,7 @@ gem 'slim-rails'
 gem 'dotenv-rails'
 
 gem 'sidekiq'
+gem 'redis-namespace'
 
 gem 'aws-sdk'
 
