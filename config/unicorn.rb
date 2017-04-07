@@ -1,6 +1,6 @@
 worker_processes ENV['WORKERS'].to_i
 working_directory ENV.fetch('APP_HOME', '/srv/junit_visualizer/current')
-listen '0.0.0.0:4096', :tcp_nopush => true
+listen '0.0.0.0:3000', :tcp_nopush => true
 timeout 15
 pid nil
 preload_app true
