@@ -30,6 +30,11 @@ ENV DB_PORT           3306
 ENV DB_USER           junit_visualizer
 ENV DB_PASS           thisisnotarealpassword
 
+ENV AWS_BUCKET	changeme
+ENV AWS_REGION  chnageme
+ENV S3_ACCESS_KEY_ID  changeme
+ENV S3_SECRECT_ACCESS_KEY changeme
+
 ARG SOURCE_COMMIT=0
 RUN echo $SOURCE_COMMIT
 ENV COMMIT_HASH $SOURCE_COMMIT
