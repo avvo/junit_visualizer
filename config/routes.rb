@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :projects do
-    get :chart, on: :member
-    get :duration_data, on: :member
+    member do
+      get :chart
+      get :duration_data
+      get :slowest_tests
+      get :unstable_tests
+    end
   end
 
   resources :builds, only: [:show]
