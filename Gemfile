@@ -24,6 +24,8 @@ gem 'dotenv-rails'
 gem 'sidekiq'
 gem 'redis-namespace'
 
+gem 'simple_form'
+
 gem 'aws-sdk'
 
 group :development, :test do

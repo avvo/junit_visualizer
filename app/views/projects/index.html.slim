@@ -11,6 +11,10 @@ table.table
         td
           = link_to project.name, project
         td
+          = link_to 'Unstable tests', unstable_tests_project_path(project)
+        td
+          = link_to 'Slowest tests', slowest_tests_project_path(project)
+        td
           =< link_to edit_project_path(project)
             span.glyphicon.glyphicon-pencil
         td
