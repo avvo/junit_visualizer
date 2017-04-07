@@ -7,20 +7,23 @@ table.table.condensed-table.table-bordered
     tr
       th [colspan=3]
         - @suites.each do |suite|
-          th [class="rotate"]
-            div
+          th
+            div.rotate
               span
                 = suite.name
     tr
-      th [style="width:30px;"] status
-      th [style="width:30px;"]
+      th status
+      th
         | build
-        .text-muted run time
+        .text-muted run&nbsp;time
 
-      th [style="width:30px;"] date
+      th date
       - @suites.each do |suite|
         th
           = suite.stats
+
+      // fill the space so we can specify the width of the columns.
+      th [style="width:75%; border:1px solid white;"]
   tbody
     - @builds.each do |build|
       = render 'projects/build_row', build: build, suites: @suites
