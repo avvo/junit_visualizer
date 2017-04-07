@@ -5,6 +5,7 @@ ENV APP_HOME /srv/junit_visualizer/current
 
 RUN apk update && \
     apk upgrade && \
+		apk add nodejs && \
     apk add build-base && \	
     rm -rf /var/cache/apk/*
 
@@ -29,9 +30,16 @@ ENV DB_PORT           3306
 ENV DB_USER           junit_visualizer
 ENV DB_PASS           thisisnotarealpassword
 
+ENV AWS_BUCKET	changeme
+ENV AWS_REGION  chnageme
+ENV S3_ACCESS_KEY_ID  changeme
+ENV S3_SECRET_ACCESS_KEY changeme
+
 ARG SOURCE_COMMIT=0
 RUN echo $SOURCE_COMMIT
 ENV COMMIT_HASH $SOURCE_COMMIT
+
+RUN DOCKER_BUILD=true bin/rake assets:precompile
 
 ENTRYPOINT ["bin/unicorn"]
 CMD ["-c", "config/unicorn.rb"]
