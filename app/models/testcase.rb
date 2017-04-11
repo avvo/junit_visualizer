@@ -3,6 +3,9 @@ class Testcase < ApplicationRecord
   belongs_to :suite
   has_many :testcase_runs, dependent: :destroy
 
+  validates_presence_of :file_name
+  validates_presence_of :name
+
   def last_test_run
     @last_test_run ||= testcase_runs.joins(:build).order('builds.number desc').first
   end

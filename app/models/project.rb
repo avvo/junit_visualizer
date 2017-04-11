@@ -5,6 +5,8 @@ class Project < ApplicationRecord
   has_many :builds, dependent: :destroy
   has_many :testcases, dependent: :destroy
 
+  validates_presence_of :name
+
   def build_count
     builds.size
   end
