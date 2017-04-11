@@ -8,7 +8,6 @@ class Build < ApplicationRecord
   validates_uniqueness_of :number, scope: :project_id
 
   validates_presence_of :number
-  validates_presence_of :project_id
   validates_presence_of :duration_in_seconds
 
   validates_presence_of :status

@@ -3,8 +3,6 @@ class Testcase < ApplicationRecord
   belongs_to :suite
   has_many :testcase_runs, dependent: :destroy
 
-  validates_presence_of :project_id
-  validates_presence_of :suite_id
   validates_presence_of :file_name
   validates_presence_of :name
 

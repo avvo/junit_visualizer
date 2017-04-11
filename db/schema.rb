@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318013343) do
+ActiveRecord::Schema.define(version: 20170411000000) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "project_id"
+    t.integer  "project_id",          null: false
     t.integer  "number"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170318013343) do
   end
 
   create_table "suites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "project_id"
+    t.integer  "project_id", null: false
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,21 +38,21 @@ ActiveRecord::Schema.define(version: 20170318013343) do
   end
 
   create_table "testcase_runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "testcase_id"
+    t.integer  "testcase_id",               null: false
     t.float    "time",        limit: 24
     t.boolean  "passed"
     t.boolean  "skipped"
     t.text     "full_error",  limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "build_id"
+    t.integer  "build_id",                  null: false
     t.index ["build_id"], name: "index_testcase_runs_on_build_id", using: :btree
     t.index ["testcase_id"], name: "index_testcase_runs_on_testcase_id", using: :btree
   end
 
   create_table "testcases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "project_id"
-    t.integer  "suite_id"
+    t.integer  "project_id", null: false
+    t.integer  "suite_id",   null: false
     t.string   "file_name"
     t.string   "name"
     t.datetime "created_at", null: false
