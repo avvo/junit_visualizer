@@ -8,8 +8,10 @@ table.table
   tbody
     - @projects.each do |project|
       tr
-        td = link_to project.name, project
-        td = render 'linklist', {project: project}
+        td
+          = link_to "#{project.name} (#{project.builds.size} builds)", project, class: project.builds.size.zero? ? 'text-muted' : ''
+        td
+          = render 'linklist', {project: project}
         td
           =< link_to edit_project_path(project)
             span.glyphicon.glyphicon-pencil
