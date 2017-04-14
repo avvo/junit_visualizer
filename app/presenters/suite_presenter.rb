@@ -15,7 +15,7 @@ class SuitePresenter
   end
 
   def status(build)
-    failure_count = testcase_runs_status_counts.fetch([build.id, FALSE], 0)
+    failure_count = testcase_runs_status_counts.fetch([build.id, FALSE, FALSE], 0)
 
     if failure_count > 0
       return STATUS_FAILURE
@@ -50,7 +50,7 @@ class SuitePresenter
   end
 
   def testcase_runs_status_counts
-    @testcase_runs_status_counts ||= Testcase.where(suite: @suite).joins(:testcase_runs).group(:build_id, :passed).count
+    @testcase_runs_status_counts ||= Testcase.where(suite: @suite).joins(:testcase_runs).group(:build_id, :passed, :skipped).count
   end
 
 

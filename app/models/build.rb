@@ -12,13 +12,11 @@ class Build < ApplicationRecord
   validates_inclusion_of :status, in: STATUSES, if: -> { status.present? }
 
   def update_summary_data
-    testcases = self.testcase_runs
-
     duration = 0
     status = STATUS_SUCCESS
-    testcases.each do |testcase|
-      duration += testcase.time
-      if testcase.failed?
+    testcase_runs.each do |testcase_run|
+      duration += testcase_run.time
+      if testcase_run.failed?
         status = STATUS_FAILURE
       end
     end
