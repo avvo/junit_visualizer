@@ -3,6 +3,5 @@ class TestcaseRun < ApplicationRecord
   belongs_to :build
 
   validates_presence_of :time
-  validates_presence_of :passed
 
 end
