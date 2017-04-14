@@ -74,7 +74,7 @@ class S3Wrapper
     full_project.slice!('/')
     suite_name = full_project.chomp('/')
 
-    suite_name
+    suite_name.present? ? suite_name : nil
   end
 
   def parse_build_number(filepath)

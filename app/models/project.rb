@@ -24,9 +24,14 @@ class Project < ApplicationRecord
     suites = s3Wrapper.suite_name_list(name)
     puts "suites #{suites}"
 
-    suites.each do |suite_name|
-      Suite.find_or_create_by(project: self, name: suite_name)
+    if suites.present?
+      suites.each do |suite_name|
+        Suite.find_or_create_by!(project: self, name: suite_name)
+      end
+    else
+      Suite.find_or_create_by!(project: self, name: Suite::DEFAULT_NAME)
     end
+
   end
 
   def process_builds_and_pull_results
@@ -78,12 +83,11 @@ class Project < ApplicationRecord
 
   def suite_from_filename(filename:)
     suite_name = s3Wrapper.parse_suite_name(name, filename)
-    suites = Suite.where(project: self, name: suite_name)
-    suites.first
+    Suite.find_by(project: self, name: suite_name || Suite::DEFAULT_NAME)
   end
 
   def process_junit_file(temp_filename:, build:, suite: )
-    p "processing build #{build.number} for project: #{name}"
+    p "processing a file for build #{build.number} for project: #{name}"
     junit_suite = JUnitParser.parse_junit(temp_filename)
 
     if junit_suite.present?
@@ -94,7 +98,7 @@ class Project < ApplicationRecord
   def process_junit_suite(junit_suite:, build_id:, suite:)
     junit_suite.test_cases.each do |test_case|
 
-      test = Testcase.find_or_create_by(
+      test = Testcase.find_or_create_by!(
         name: test_case.name,
         file_name: test_case.file,
         project: self,
