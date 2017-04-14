@@ -1,27 +1,24 @@
-table.table.condensed-table.table-bordered
-  thead
-    tr
-      th
-        | Name
-      th
-        | Suite
-      th
-        | Status
-      th
-        | Time
-  tbody
-    - testcase_runs.each do |run|
-      tr
-        td
-          = link_to run.testcase.name, testcase_path(run.testcase)
-        td
-          = link_to SuitePresenter.new(run.testcase.suite).name, suite_path(run.testcase.suite)
-        td
-          - if run.skipped?
-            = 'SKIPPED'
-          - elsif run.passed?
-            = 'PASSED'
-          - else
-            = "FAILED (#{run.full_error || 'No specific error details'})"
-        td
-          = run.time.round(2)
+- testcase_runs.each do |run|
+  .row.panel.panel-default
+    .col-xs-12.col-sm-3.panel-body
+      div.break-on-letter
+        = link_to run.testcase.name, testcase_path(run.testcase)
+      div
+        = link_to SuitePresenter.new(run.testcase.suite).name, suite_path(run.testcase.suite)
+
+      div
+        - if run.skipped?
+          = 'SKIPPED'
+        - elsif run.passed?
+          = 'PASSED'
+        - else
+          = 'FAILED'
+
+      div
+        = "#{run.time.round(2)} seconds"
+
+    - if run.failed?
+      .col-xs-12.col-sm-9
+        pre
+          code.small
+            = "#{run.full_error || 'No specific error details'}"

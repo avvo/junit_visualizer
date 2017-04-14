@@ -10,4 +10,4 @@ h2
     strong
       =< "#{distance_of_time_in_words(@build.duration_in_seconds)}"
 
-= render 'testcases/run_table', testcase_runs: @build.testcase_runs
+= render 'testcases/run_table', testcase_runs: @build.testcase_runs.order(passed: :asc)
