@@ -4,6 +4,5 @@ class TestcaseRun < ApplicationRecord
 
   validates_presence_of :time
   validates_presence_of :passed
-  validates_presence_of :skipped
 
 end

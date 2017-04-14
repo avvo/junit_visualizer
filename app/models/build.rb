@@ -8,10 +8,8 @@ class Build < ApplicationRecord
   validates_uniqueness_of :number, scope: :project_id
 
   validates_presence_of :number
-  validates_presence_of :duration_in_seconds
 
-  validates_presence_of :status
-  validates_inclusion_of :status, in: STATUSES
+  validates_inclusion_of :status, in: STATUSES, if: -> { status.present? }
 
   def update_summary_data
     testcases = self.testcase_runs

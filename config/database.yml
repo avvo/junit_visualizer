@@ -5,6 +5,7 @@ default: &default
   username: <%= ENV.fetch('DB_USER', 'root') %>
   password: <%= ENV.fetch('DB_PASS', 'root') %>
   database: junit_visualizer
+  pool: 5
 
 development:
   <<: *default
