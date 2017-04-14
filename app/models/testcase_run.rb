@@ -4,4 +4,8 @@ class TestcaseRun < ApplicationRecord
 
   validates_presence_of :time
 
+  def failed?
+    [passed?, skipped?].none?
+  end
+
 end

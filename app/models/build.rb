@@ -18,7 +18,7 @@ class Build < ApplicationRecord
     status = STATUS_SUCCESS
     testcases.each do |testcase|
       duration += testcase.time
-      if !testcase.passed
+      if testcase.failed?
         status = STATUS_FAILURE
       end
     end
