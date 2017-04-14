@@ -107,7 +107,7 @@ class Project < ApplicationRecord
         time: test_case.time,
         passed: test_case.passed?,
         skipped: test_case.skipped?,
-        full_error: test_case.message
+        full_error: (test_case.message || '').truncate(65000)
       )
     end
   end
