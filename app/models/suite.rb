@@ -7,4 +7,6 @@ class Suite < ApplicationRecord
 
   has_many :builds, through: :project
 
+  validates_presence_of :name
+
 end
