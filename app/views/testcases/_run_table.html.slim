@@ -15,7 +15,7 @@ table.table.condensed-table.table-bordered
         td
           = link_to run.testcase.name, testcase_path(run.testcase)
         td
-          = link_to run.testcase.suite.name, suite_path(run.testcase.suite)
+          = link_to SuitePresenter.new(run.testcase.suite).name, suite_path(run.testcase.suite)
         td
           - if run.skipped?
             = 'SKIPPED'

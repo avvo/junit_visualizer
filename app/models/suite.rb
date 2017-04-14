@@ -1,4 +1,7 @@
 class Suite < ApplicationRecord
+
+  DEFAULT_NAME = 'default'
+
   belongs_to :project
   has_many :testcases, dependent: :destroy
 

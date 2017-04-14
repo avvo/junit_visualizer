@@ -7,10 +7,11 @@ table.table.condensed-table.table-bordered
     tr
       th [colspan=3]
         - @suites.each do |suite|
+          - suite_presenter = SuitePresenter.new(suite)
           th
             div.rotate
               span
-                = suite.name
+                = suite_presenter.name
     tr
       th status
       th

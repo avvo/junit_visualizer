@@ -7,7 +7,11 @@ class SuitePresenter
   end
 
   def name
-    @suite.name.split("=")[1].split(",")[0]
+    if @suite.name.include?('=')
+      @suite.name.split("=")[1].split(",")[0]
+    else
+      @suite.name
+    end
   end
 
   def duration_in_seconds(build)
