@@ -5,13 +5,13 @@ class JUnitSuite
   attr_accessor :test_cases
 
   def initialize(xml)
-    @time       = xml.attribute("time").value
-    @skipped    = xml.attribute("skipped").value.to_i
-    @failures   = xml.attribute("failures").value.to_i
-    @errors     = xml.attribute("errors").value.to_i
-    @name       = xml.attribute("name").value
-    @assertions = xml.attribute("assertions").value.to_i
-    @test_count = xml.attribute("tests").value.to_i
+    @time       = xml.attribute("time").try(:value)
+    @skipped    = xml.attribute("skipped").try(:value).to_i
+    @failures   = xml.attribute("failures").try(:value).to_i
+    @errors     = xml.attribute("errors").try(:value).to_i
+    @name       = xml.attribute("name").try(:value)
+    @assertions = xml.attribute("assertions").try(:value).to_i
+    @test_count = xml.attribute("tests").try(:value).to_i
 
     parse_test_cases(xml.xpath("testcase"))
   end
