@@ -7,10 +7,10 @@ class JUnitTestCase
   attr_reader :message
 
   def initialize(xml)
-    @time       = xml.attribute("time").value
-    @file       = xml.attribute("file").value
-    @name       = xml.attribute("name").value
-    @assertions = xml.attribute("assertions").value
+    @time       = xml.attribute("time").try(:value)
+    @file       = xml.attribute("file").try(:value)
+    @name       = xml.attribute("name").try(:value)
+    @assertions = xml.attribute("assertions").try(:value)
 
     @failure = process_failures(xml, "failure")
     @skipped = process_failures(xml, "skipped")
@@ -21,8 +21,8 @@ class JUnitTestCase
     if !xml.xpath(type).empty?
       message = []
       message << "#{file}##{name}"
-      message << xml.xpath(type).attribute("type").value
-      message << xml.xpath(type).attribute("message").value
+      message << xml.xpath(type).attribute("type").try(:value)
+      message << xml.xpath(type).attribute("message").try(:value)
       message << xml.xpath(type).text
 
       @message = message.join("\n")
