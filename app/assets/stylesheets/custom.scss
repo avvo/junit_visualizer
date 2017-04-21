@@ -4,3 +4,28 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.break-on-letter {
+  word-break: break-all;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.subnav {
+  margin-bottom: 21px;
+}
+
+
+.form-inline {
+  margin-bottom: 10px;
+}
+
+.form-inline > * {
+  margin: 10px 7px !important;
+}
+
+.form-inline label {
+  margin-right: 5px;
+}
