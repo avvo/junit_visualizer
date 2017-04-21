@@ -1,0 +1,11 @@
+= render layout: 'layouts/default' do
+
+  - if @project.present? && @project.id.present?
+    = render 'subnav', project: @project
+  - else # put a subnav placeholder to make sure there is a bottom margin
+    .subnav
+
+  = render 'shared/flash'
+
+  .container
+    main#content = yield

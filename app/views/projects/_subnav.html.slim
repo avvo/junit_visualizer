@@ -1,4 +1,10 @@
-h1
-  = "#{project.name} (#{project.build_count} builds)"
-
-= render 'linklist', project: project
+nav.navbar.navbar-inverse.subnav
+  .container
+    .navbar-header
+      a.navbar-brand href=project_path
+        ="#{project.name} (#{project.build_count} builds)"
+    ul.nav.navbar-nav
+      li = link_to 'History', project
+      li = link_to 'Chart', chart_project_path(project)
+      li = link_to 'Unstable tests', unstable_tests_project_path(project)
+      li = link_to 'Slowest tests', slowest_tests_project_path(project)

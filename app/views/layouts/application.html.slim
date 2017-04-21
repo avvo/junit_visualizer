@@ -1,44 +1,5 @@
-doctype html
+= render layout: 'layouts/default' do
+  = render 'shared/flash'
 
-html
-  head
-    meta [charset="utf-8"]
-
-    title JUnit Visualizer
-
-    / META TAGS
-    / ------------------------------------------------------------------------------
-
-    / Viewport - set initial page zoom for mobile
-    meta [name="viewport" content="width=device-width, initial-scale=1"]
-
-    / Tell IE to use the latest rendering and avoid its shitty 'compatibility' mode
-    / See: http://stackoverflow.com/q/6771258/625710
-    meta [http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1']
-
-    = csrf_meta_tags
-
-    / STYLESHEETS
-    / ------------------------------------------------------------------------------
-
-    / For charting
-    = javascript_include_tag 'https://www.google.com/jsapi'
-
-    = stylesheet_link_tag 'application', media: 'all'
-
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
-  body
-    = render 'shared/header'
-
-    - flash.each do |name, msg|
-      = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
-        button.close type="button" data-dismiss="alert"
-          span aria-hidden="true"
-            | &times;
-          span.sr-only
-            | Close
-        = msg
-
-    .container
-      main#content = yield
+  .container
+    main#content = yield
