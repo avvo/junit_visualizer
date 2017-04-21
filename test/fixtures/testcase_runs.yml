@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  build: one
   testcase: one
   time: 1.5
   passed: false
@@ -8,6 +9,7 @@ one:
   full_error: MyText
 
 two:
+  build: one
   testcase: two
   time: 1.5
   passed: false

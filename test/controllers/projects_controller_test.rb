@@ -38,10 +38,10 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to project_url(@project)
   end
 
-  test "should destroy project" do
-    assert_difference('Project.count', -1) do
-      delete project_url(@project)
-    end
+  test "should queue project to be destroyed" do
+    DeleteProjectJob.expects(:perform_later).with(@project.id).once
+
+    delete project_url(@project)
 
     assert_redirected_to projects_url
   end
