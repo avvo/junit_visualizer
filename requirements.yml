@@ -1,7 +1,7 @@
 service_name: junit-visualizer
 stack_name: junit-visualizer
 image: avvo/junit_visualizer
-facing: frontend
+facing: internal
 pre-deploy: bin/pre-deploy
 
 mysql:
