@@ -12,6 +12,9 @@ mysql:
       - update
       - delete
       - create
+      - drop
+      - index
+      - alter
     as: DB
     master: true
 
