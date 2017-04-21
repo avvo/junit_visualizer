@@ -3,7 +3,7 @@ h1
 
 p
   | Suite:
-  =< link_to @testcase.suite.name, suite_path(@testcase.suite)
+  =< link_to SuitePresenter.new(@testcase.suite).name, suite_path(@testcase.suite)
 
 p
   | Project:

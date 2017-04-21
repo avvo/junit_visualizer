@@ -1,9 +1,8 @@
-service_name: junit_visualizer
-stack_name: junit_visualizer
+service_name: junit-visualizer
+stack_name: junit-visualizer
 image: avvo/junit_visualizer
 facing: frontend
 pre-deploy: bin/pre-deploy
-post-deploy: false
 
 mysql:
   - db: junit_visualizer
@@ -29,3 +28,5 @@ additional_services:
 workers:
   - name: sidekiq
     command: bin/sidekiq
+
+health_check: false
