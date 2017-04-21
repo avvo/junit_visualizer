@@ -4,6 +4,17 @@ image: avvo/junit_visualizer
 facing: internal
 pre-deploy: bin/pre-deploy
 
+mysql:
+  - db: junit_visualizer
+    grants:
+      - select
+      - insert
+      - update
+      - delete
+      - create
+    as: DB
+    master: true
+
 additional_services:
   redis:
     image: redis:3.0
@@ -13,13 +24,6 @@ additional_services:
     image: memcached
     service_port: 11211
     container_name: memcached
-  mysql:
-    image: mysql:5.6
-    service_port: 3306
-    container_name: mysql
-    environment:
-      MYSQL_DATABASE: junit_visualizer
-      MYSQL_ROOT_PASSWORD: root
 
 workers:
   - name: sidekiq
