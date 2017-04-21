@@ -1,5 +1,5 @@
-h1
-  = "Unstable tests for #{@project.name}"
+h2
+  = "Unstable tests"
   =< "(avg last #{@unstable_tests.build_count} test runs)"
 
 = simple_form_for empty_form_object, method: :get do |f|
@@ -28,8 +28,10 @@ table.table.condensed-table.table-bordered
 
       tr
         td
-          = link_to testcase.name, testcase_path(testcase)
+          .break-on-letter
+            = link_to testcase.name, testcase_path(testcase)
         td
-          = testcase.file_name
+          .break-on-letter
+            = testcase.file_name
         td
           = unstable_test.failed_count

@@ -1,5 +1,5 @@
 h1
-  = "Slowest tests for #{@project.name}"
+  = "Slowest tests "
   =< "(avg last #{@slowest_tests.build_count} test runs)"
 
 = simple_form_for empty_form_object, method: :get do |f|
@@ -28,9 +28,11 @@ table.table.condensed-table.table-bordered
 
       tr
         td
-          = link_to testcase.name, testcase_path(testcase)
+          .break-on-letter
+            = link_to testcase.name, testcase_path(testcase)
         td
-          = testcase.file_name
+          .break-on-letter
+            = testcase.file_name
         td
           => slow_test.time.round(2)
           | seconds
