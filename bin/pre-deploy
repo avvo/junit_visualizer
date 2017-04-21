@@ -2,5 +2,6 @@
 require 'pathname'
 
 Dir.chdir Pathname.new File.expand_path('../../',  __FILE__) do
+  system 'bin/rake db:create'
   system 'bin/rake db:migrate'
 end
