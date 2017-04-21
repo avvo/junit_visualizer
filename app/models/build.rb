@@ -9,8 +9,6 @@ class Build < ApplicationRecord
 
   validates_presence_of :number
 
-  validates_inclusion_of :status, in: STATUSES, if: -> { status.present? }
-
   def update_summary_data
     duration = 0
     status = STATUS_SUCCESS
