@@ -2,14 +2,10 @@ h1
   = "Slowest tests "
   =< "(avg last #{@slowest_tests.build_count} test runs)"
 
-= simple_form_for empty_form_object, method: :get do |f|
-  .row
-    .col-xs-12.col-sm-2
-      = f.input :test_count, as: :integer, input_html: { value: params.fetch(:test_count, @slowest_tests.test_count) }
-    .col-xs-12.col-sm-2
-      = f.input :build_count, as: :integer, input_html: { value: params.fetch(:build_count, @slowest_tests.build_count) }
-    .col-xs-12.col-sm-2
-      = f.submit 'Filter', class: 'btn btn-default'
+= simple_form_for empty_form_object, html: { class: 'form-inline' }, method: :get do |f|
+  = f.input :test_count, as: :integer, input_html: { value: params.fetch(:test_count, @slowest_tests.test_count) }
+  = f.input :build_count, as: :integer, input_html: { value: params.fetch(:build_count, @slowest_tests.build_count) }
+  = f.submit 'Filter', class: 'btn btn-default'
 
   br
 
