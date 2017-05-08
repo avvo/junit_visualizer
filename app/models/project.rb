@@ -87,6 +87,9 @@ class Project < ApplicationRecord
       end
     end
 
+  rescue ActiveRecord::RecordNotUnique => e
+    # Because the records can take a while to create, we need the index, even though we have the uniqueness validation.
+    Rails.logger.info "Found duplicate record, probably because 2 jobs were running at same time. project: #{name}, build_number: #{build_number}"
   end
 
   def suite_from_filename(filename:)
