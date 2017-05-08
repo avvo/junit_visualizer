@@ -7,6 +7,8 @@ class Project < ApplicationRecord
 
   validates_presence_of :name
 
+  scope :displayable, -> { where(hide: false) }
+
   def build_count
     builds.size
   end
