@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @builds = @project.builds.order(number: :desc)
+    @builds = @project.builds.order(number: :desc).page params[:page]
     raw_suites = @project.suites
     @suites = []
     raw_suites.each do |suite|

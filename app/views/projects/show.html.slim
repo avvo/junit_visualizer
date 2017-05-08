@@ -24,3 +24,5 @@ table.table.condensed-table.table-bordered
   tbody
     - @builds.each do |build|
       = render 'projects/build_row', build: build, suites: @suites
+
+= paginate @builds, theme: 'twitter-bootstrap-3'
