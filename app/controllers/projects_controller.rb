@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @projects = @projects.displayable unless params.fetch(:show_hidden, :false) == 'true'
   end
 
   def show
@@ -89,7 +90,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :hide)
   end
 
 end

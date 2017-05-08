@@ -13,6 +13,4 @@ nav.navbar.navbar-default
 
       ul.nav.navbar-nav.navbar-right.btn-toolbar
         li
-          = link_to 'Pull Results', pull_results_results_path, method: :post
-
-      /= button_to 'Clear all Results', clear_results_results_path, method: :delete, class: 'header-btn btn btn-link u-text-color-red'
+          = link_to 'Pull Data', pull_results_results_path, method: :post, title: 'Creates projects from the directories in your bucket and updates all test data not yet queried'

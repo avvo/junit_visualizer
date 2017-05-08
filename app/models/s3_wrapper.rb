@@ -29,6 +29,10 @@ class S3Wrapper
     bucket.objects(prefix: filename).first.last_modified
   end
 
+  def project_names
+    bucket.objects(delimiter: '/').batches.first.response.common_prefixes.map{|cp| cp.prefix[0..-2]}
+  end
+
   def file_list_from_project(project_name)
     @file_list_from_project ||= begin
       list = []
