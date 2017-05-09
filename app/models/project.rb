@@ -78,9 +78,9 @@ class Project < ApplicationRecord
         filenames.each do |filename|
           suite = suite_from_filename(filename: filename)
 
-          temp_filename = s3Wrapper.download_from_s3(filename)
+          file_data = s3Wrapper.retrieve_from_s3(filename)
 
-          process_junit_file(temp_filename: temp_filename, build: build, suite: suite)
+          process_junit_data(data: file_data, build: build, suite: suite)
         end
 
         build.update_summary_data
@@ -97,9 +97,9 @@ class Project < ApplicationRecord
     Suite.find_by(project: self, name: suite_name || Suite::DEFAULT_NAME)
   end
 
-  def process_junit_file(temp_filename:, build:, suite: )
+  def process_junit_data(data:, build:, suite: )
     p "processing a file for build #{build.number} for project: #{name}"
-    junit_suite = JUnitParser.parse_junit(temp_filename)
+    junit_suite = JUnitParser.parse_junit(data)
 
     if junit_suite.present?
       process_junit_suite(junit_suite: junit_suite, build_id: build.id, suite: suite)
