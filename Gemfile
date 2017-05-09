@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 gem 'mysql2'
 
 gem 'unicorn'
@@ -24,7 +24,7 @@ gem 'dotenv-rails'
 gem 'sidekiq'
 gem 'redis-namespace'
 
-gem 'simple_form'
+gem 'simple_form', '>= 3.4.0'
 
 gem 'aws-sdk'
 gem 'chartkick'
