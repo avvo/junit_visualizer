@@ -7,16 +7,8 @@ class S3Wrapper
     @s3_resource ||= Aws::S3::Resource.new
   end
 
-  def download_from_s3(s3_filename)
-    s3_client = Aws::S3::Client.new
-
-    file = Tempfile.new(clean_filename(s3_filename))
-
-    File.open(file.path, 'wb') do |file|
-      s3_client.get_object({bucket: bucket_name, key: s3_filename}, target: file)
-    end
-
-    file.path
+  def retrieve_from_s3(s3_filename)
+    bucket.object(s3_filename).get.body.string
   end
 
   def file_list_from_project_and_build(project_name:, build_number:)
