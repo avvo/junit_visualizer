@@ -3,7 +3,7 @@ class Build < ApplicationRecord
   STATUSES = [STATUS_SUCCESS, STATUS_FAILURE]
 
   belongs_to :project
-  has_many :testcase_runs, dependent: :destroy
+  has_many :testcase_runs, -> { order(passed: :asc, time: :desc) }, dependent: :destroy
 
   validates_uniqueness_of :number, scope: :project_id
 
