@@ -33,3 +33,10 @@ workers:
     command: bin/sidekiq
 
 health_check: false
+
+routing:
+  lb_port: 8890
+  path: /
+  port: 3000
+  protocol: http
+  subdomain: junit-visualizer
