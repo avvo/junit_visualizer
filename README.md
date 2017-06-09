@@ -29,6 +29,8 @@ We use mysql and redis.  You may need to set related environment variables for t
 
 For production you need to set SECRET_KEY_BASE
 
+In development, set **BUILDS_TO_PULL** to pull more than the default 3 builds when grabbing data.  This exists to speed up development pulls so they don't grab all the data available.
+
 This project is available in a docker image: https://hub.docker.com/r/avvo/junit_visualizer/
 
 ## How it works
