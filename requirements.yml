@@ -1,8 +1,7 @@
 service_name: junit-visualizer
-stack_name: junit-visualizer
 image: avvo/junit_visualizer
 facing: internal
-pre-deploy: bin/pre-deploy
+pre-deploy: [bin/pre-deploy]
 
 mysql:
   - db: junit_visualizer
@@ -20,7 +19,7 @@ mysql:
 
 workers:
   - name: sidekiq
-    command: bin/bash
+    command: [bin/sidekiq]
 
 additional_services:
   redis:
