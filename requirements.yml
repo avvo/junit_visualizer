@@ -35,7 +35,7 @@ workers:
 health_check: false
 
 routing:
-  lb_port: 8890
+  lb_port: 80
   path: /
   port: 3000
   protocol: http
