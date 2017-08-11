@@ -1,4 +1,4 @@
-FROM avvo/ruby-rails-mysql
+FROM avvo/ruby-rails-mysql:2.3.3
 MAINTAINER Jake Sparling <jsparling@avvo.com>
 
 ENV APP_HOME /srv/junit_visualizer/current
