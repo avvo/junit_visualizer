@@ -19,7 +19,7 @@ mysql:
 
 workers:
   - name: sidekiq
-    command: [/bin/sh]
+    command: [bin/sidekiq]
 
 additional_services:
   redis:
