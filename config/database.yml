@@ -17,5 +17,8 @@ test:
   <<: *default
   database: junit_visualizer<%= ENV['EXECUTOR_NUMBER'] %>_test
 
+ec2:
+  <<: *default
+
 production:
   <<: *default
