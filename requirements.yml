@@ -34,7 +34,7 @@ additional_services:
 health_check: false
 
 routing:
-  lb_port: 80
+  lb_port: 8890
   path: /
   port: 3000
   protocol: http
