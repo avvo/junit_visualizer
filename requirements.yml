@@ -1,6 +1,6 @@
 service_name: junit-visualizer
 image: avvo/junit_visualizer
-facing: internal
+facing: backend 
 pre-deploy: [bin/pre-deploy]
 
 mysql:
