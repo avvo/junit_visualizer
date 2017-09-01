@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508212601) do
+ActiveRecord::Schema.define(version: 20170705000000) do
 
   create_table "builds", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "project_id", null: false
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170508212601) do
   create_table "testcases", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "project_id", null: false
     t.integer "suite_id", null: false
-    t.string "file_name"
-    t.string "name"
+    t.string "file_name", limit: 2048
+    t.string "name", limit: 2048
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_testcases_on_project_id"
