@@ -1,8 +1,7 @@
 service_name: junit-visualizer
-stack_name: junit-visualizer
 image: avvo/junit_visualizer
-facing: internal
-pre-deploy: bin/pre-deploy
+facing: backend 
+pre-deploy: [bin/pre-deploy]
 
 mysql:
   - db: junit_visualizer
@@ -18,19 +17,19 @@ mysql:
     as: DB
     master: true
 
+workers:
+  - name: sidekiq
+    command: [bin/sidekiq]
+
 additional_services:
   redis:
-    image: redis:3.0
+    image: redis:3.0-alpine
     service_port: 6379
     container_name: redis
   memcached:
     image: memcached
     service_port: 11211
     container_name: memcached
-
-workers:
-  - name: sidekiq
-    command: bin/sidekiq
 
 health_check: false
 

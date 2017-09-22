@@ -4,6 +4,8 @@ development: &default
   bucket_name: <%= ENV['AWS_BUCKET'] %>
   region: <%= ENV.fetch('AWS_REGION', 'us-west-2') %>
 test:
- <<: *default
+  <<: *default
+ec2:
+  <<: *default
 production:
   <<: *default

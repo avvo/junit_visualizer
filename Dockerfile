@@ -42,5 +42,4 @@ ENV COMMIT_HASH $SOURCE_COMMIT
 RUN DOCKER_BUILD=true bin/rake assets:precompile
 
 EXPOSE 3000
-ENTRYPOINT ["bin/unicorn"]
-CMD ["-c", "config/unicorn.rb"]
+CMD ["bin/unicorn", "-c", "config/unicorn.rb"]
