@@ -4,9 +4,9 @@ development:
 test:
   url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
   namespace: 'junit_visualizer-test'
-production:
-  url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
-  namespace: 'junit_visualizer-production'
 ec2:
+  url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
+  namespace: 'junit_visualizer-ec2'
+production:
   url: 'redis://<%= ENV.fetch("REDIS_HOST", "localhost") %>:<%= ENV.fetch("REDIS_PORT", "6379") %>/7'
   namespace: 'junit_visualizer-production'
