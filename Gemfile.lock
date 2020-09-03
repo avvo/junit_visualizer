@@ -108,7 +108,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    rack (2.0.2)
+    rack (2.2.3)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
